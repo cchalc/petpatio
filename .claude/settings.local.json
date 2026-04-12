@@ -29,7 +29,10 @@
       "Bash(npx tsc:*)",
       "Bash(timeout 15 pnpm dev:*)",
       "Bash(pnpm build:*)",
-      "Bash(npm run typecheck:*)"
+      "Bash(npm run typecheck:*)",
+      "Bash(jj squash:*)",
+      "Bash(npx biome check:*)",
+      "Bash(timeout 10 pnpm dev:*)"
     ]
   }
 }
