@@ -13,7 +13,13 @@
       "Bash(jj log:*)",
       "Bash(jj bookmark set:*)",
       "Bash(jj bookmark:*)",
-      "Bash(mmdc:*)"
+      "Bash(mmdc:*)",
+      "Bash(/Users/christopher.chalcraft/.claude/plugins/cache/superpowers-marketplace/superpowers/5.0.7/skills/brainstorming/scripts/start-server.sh:*)",
+      "Bash(jj workspace:*)",
+      "Bash(pnpm install:*)",
+      "WebFetch(domain:www.petpatio.com)",
+      "Bash(pnpm dev)",
+      "Bash(open:*)"
     ]
   }
 }
