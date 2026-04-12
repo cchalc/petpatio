@@ -23,7 +23,8 @@
       "Bash(/Users/christopher.chalcraft/.claude/plugins/cache/superpowers-marketplace/superpowers/5.0.7/skills/brainstorming/scripts/stop-server.sh /Users/christopher.chalcraft/Projects/petpatio/.superpowers/brainstorm/84254-1775970750)",
       "Bash(pnpm add:*)",
       "Bash(pnpm list:*)",
-      "Bash(jj show:*)"
+      "Bash(jj show:*)",
+      "Bash(jj diff:*)"
     ]
   }
 }
