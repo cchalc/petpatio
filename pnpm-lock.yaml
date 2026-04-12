@@ -53,6 +53,12 @@ importers:
       '@tanstack/router-plugin':
         specifier: ^1.167.4
         version: 1.167.4(@tanstack/react-router@1.168.3(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(vite@7.3.1(@types/node@22.19.15)(tsx@4.21.0)(yaml@2.8.2))
+      graphql:
+        specifier: ^16.13.2
+        version: 16.13.2
+      graphql-request:
+        specifier: ^7.4.0
+        version: 7.4.0(graphql@16.13.2)
       lucide-react:
         specifier: ^0.561.0
         version: 0.561.0(react@19.2.4)
@@ -679,6 +685,11 @@ packages:
 
   '@fontsource/source-serif-4@5.2.9':
     resolution: {integrity: sha512-er/Pym9emsEVJNf947umJ4kXarXfsiN6CN7kTYinefKRaHLwiquiiHOZvKvxWgkV8JMCf3pV3g0NcsPFpVCH9w==}
+
+  '@graphql-typed-document-node/core@3.2.0':
+    resolution: {integrity: sha512-mB9oAsNCm9aM3/SOv4YtBMqZbYj10R7dkq8byBqxGY/ncFwhf2oQzMV+LCRlWoDSEBJ3COiR1yeDvMtsoOsuFQ==}
+    peerDependencies:
+      graphql: ^0.8.0 || ^0.9.0 || ^0.10.0 || ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
 
   '@jridgewell/gen-mapping@0.3.13':
     resolution: {integrity: sha512-2kkt/7niJ6MgEPxF0bYdQ6etZaA+fQvDcLKckhy1yIQOzaoKjBBjSj63/aLVjYE3qhRt5dvM+uUyfCg6UKCBbA==}
@@ -1569,7 +1580,7 @@ packages:
     resolution: {integrity: sha512-l2aFy5jALhniG5HgqrD6jXLi/rUWrKvqN/qJx6yoJsgKhblVd+iqqU4RCXavm/jPityDo5TCvKMnpjKnOriy0w==}
 
   '@tanstack/db-ivm@https://pkg.pr.new/TanStack/db/@tanstack/db-ivm@6fffeec':
-    resolution: {integrity: sha512-IKTik8rh7TnKcP4j/XL1Pe27TiQvnKnrnSGP/FDqyLovtsHOJPEXqfmDJ7X4CY7rGXDIkm9zsCxSqJOTLgQqJQ==, tarball: https://pkg.pr.new/TanStack/db/@tanstack/db-ivm@6fffeec}
+    resolution: {tarball: https://pkg.pr.new/TanStack/db/@tanstack/db-ivm@6fffeec}
     version: 0.1.17
     peerDependencies:
       typescript: '>=4.7'
@@ -1581,7 +1592,7 @@ packages:
       typescript: '>=4.7'
 
   '@tanstack/db@https://pkg.pr.new/TanStack/db/@tanstack/db@6fffeec':
-    resolution: {integrity: sha512-8xfBfQm85hpdHHSKCKdC5BB/LzUKDp1NbMDmCqExSaIu2rH6GV2p3KrGy4/3nhudSDHQmPcidHwn///z8jCEwQ==, tarball: https://pkg.pr.new/TanStack/db/@tanstack/db@6fffeec}
+    resolution: {tarball: https://pkg.pr.new/TanStack/db/@tanstack/db@6fffeec}
     version: 0.5.30
     peerDependencies:
       typescript: '>=4.7'
@@ -1981,6 +1992,15 @@ packages:
     resolution: {integrity: sha512-2vFqsaDVIT9Gz7N6kAL++pLpp41l3PfDuusHcjnGLfR6+huZkl6ziX+zgVC3ZxpqWhzH6pyDdGrCeDhMIvwaxw==}
     peerDependencies:
       csstype: ^3.0.10
+
+  graphql-request@7.4.0:
+    resolution: {integrity: sha512-xfr+zFb/QYbs4l4ty0dltqiXIp07U6sl+tOKAb0t50/EnQek6CVVBLjETXi+FghElytvgaAWtIOt3EV7zLzIAQ==}
+    peerDependencies:
+      graphql: 14 - 16
+
+  graphql@16.13.2:
+    resolution: {integrity: sha512-5bJ+nf/UCpAjHM8i06fl7eLyVC9iuNAjm9qzkiu2ZGhM0VscSvS6WDPfAwkdkBuoXGM9FJSbKl6wylMwP9Ktig==}
+    engines: {node: ^12.22.0 || ^14.16.0 || ^16.0.0 || >=17.0.0}
 
   h3@2.0.1-rc.16:
     resolution: {integrity: sha512-h+pjvyujdo9way8qj6FUbhaQcHlR8FEq65EhTX9ViT5pK8aLj68uFl4hBkF+hsTJAH+H1END2Yv6hTIsabGfag==}
@@ -2829,6 +2849,10 @@ snapshots:
   '@fontsource/source-sans-3@5.2.9': {}
 
   '@fontsource/source-serif-4@5.2.9': {}
+
+  '@graphql-typed-document-node/core@3.2.0(graphql@16.13.2)':
+    dependencies:
+      graphql: 16.13.2
 
   '@jridgewell/gen-mapping@0.3.13':
     dependencies:
@@ -4242,6 +4266,13 @@ snapshots:
   goober@2.1.18(csstype@3.2.3):
     dependencies:
       csstype: 3.2.3
+
+  graphql-request@7.4.0(graphql@16.13.2):
+    dependencies:
+      '@graphql-typed-document-node/core': 3.2.0(graphql@16.13.2)
+      graphql: 16.13.2
+
+  graphql@16.13.2: {}
 
   h3@2.0.1-rc.16:
     dependencies:
