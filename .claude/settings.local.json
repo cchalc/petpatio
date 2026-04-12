@@ -32,7 +32,14 @@
       "Bash(npm run typecheck:*)",
       "Bash(jj squash:*)",
       "Bash(npx biome check:*)",
-      "Bash(timeout 10 pnpm dev:*)"
+      "Bash(timeout 10 pnpm dev:*)",
+      "Bash(lsof:*)",
+      "Bash(pnpm run build:*)",
+      "Bash(pnpm exec eslint:*)",
+      "Bash(node --check --input-type=module -e:*)",
+      "Bash(node -e:*)",
+      "Bash(timeout 10 pnpm run dev:*)",
+      "Bash(gtimeout:*)"
     ]
   }
 }
