@@ -4,7 +4,16 @@
       "Bash(jj git init:*)",
       "Bash(jj status:*)",
       "Bash(jj describe:*)",
-      "Bash(jj new:*)"
+      "Bash(jj new:*)",
+      "Bash(jj git remote add:*)",
+      "Bash(jj bookmark create:*)",
+      "Bash(jj git push:*)",
+      "Bash(jj git remote set-url:*)",
+      "Bash(jj git fetch:*)",
+      "Bash(jj log:*)",
+      "Bash(jj bookmark set:*)",
+      "Bash(jj bookmark:*)",
+      "Bash(mmdc:*)"
     ]
   }
 }

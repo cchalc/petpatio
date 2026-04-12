@@ -1,0 +1,80 @@
+sequenceDiagram
+    participant U as User/Browser
+    participant C as Client (React)
+    participant DB as TanStack DB (Local)
+    participant S as Server Functions
+    participant ST as Stripe API
+    participant PG as PostgreSQL
+    participant E as Electric Sync
+    participant R as Resend Email
+
+    Note over U,R: Checkout Flow
+
+    %% Add to Cart
+    U->>C: Add product to cart
+    C->>DB: Write to local cart collection
+    DB-->>C: Optimistic update
+    C-->>U: Cart updated (instant)
+
+    %% View Cart
+    U->>C: Navigate to cart
+    C->>DB: useLiveQuery(cart items)
+    DB-->>C: Cart data with products
+    C-->>U: Display cart
+
+    %% Initiate Checkout
+    U->>C: Click "Checkout"
+    C->>S: createCheckoutSession(cartItems)
+
+    S->>PG: BEGIN TRANSACTION
+    S->>PG: Validate inventory availability
+    PG-->>S: Stock levels
+
+    alt Sufficient Stock
+        S->>ST: Create Payment Intent
+        ST-->>S: Payment Intent + Client Secret
+
+        S->>PG: Create order (pending)
+        S->>PG: Reserve inventory
+        S->>PG: COMMIT
+
+        S-->>C: Return client secret + order ID
+
+        C->>C: Load Stripe.js
+        C-->>U: Show payment form
+
+        %% Payment Flow
+        U->>C: Enter payment details
+        C->>ST: Confirm payment
+        ST-->>C: Payment succeeded
+
+        C->>S: confirmOrder(orderId, paymentIntentId)
+        S->>PG: Update order status to 'confirmed'
+        S->>PG: Decrement inventory
+
+        PG->>E: Notify change (logical replication)
+        E->>DB: Sync order + inventory
+
+        S->>R: Send order confirmation email
+        R-->>S: Email sent
+
+        S-->>C: Order confirmed
+
+        C->>DB: Clear cart
+        DB-->>C: Cart cleared
+        C-->>U: Redirect to order confirmation
+
+        Note over U,DB: Real-time sync updates inventory across all clients
+
+    else Insufficient Stock
+        S->>PG: ROLLBACK
+        S-->>C: Error: Out of stock
+        C-->>U: Show error message
+    end
+
+    %% Webhook Flow (async)
+    Note over ST,PG: Stripe Webhook (parallel)
+    ST->>S: webhook: payment_intent.succeeded
+    S->>PG: Verify order payment status
+    S->>PG: Update payment metadata
+    S-->>ST: 200 OK

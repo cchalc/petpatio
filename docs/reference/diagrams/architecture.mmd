@@ -1,0 +1,86 @@
+flowchart TB
+    subgraph Client["Client Layer (Browser)"]
+        direction TB
+        TSR[TanStack Start Client]
+        R19[React 19]
+        RUI[Radix UI]
+        TSDB[TanStack DB]
+        ELEC[Electric Shapes Client]
+
+        TSR --> R19
+        R19 --> RUI
+        R19 --> TSDB
+        TSDB --> ELEC
+    end
+
+    subgraph Server["Server Layer (TanStack Start SSR)"]
+        direction TB
+        TSS[TanStack Start Server]
+        SF[Server Functions]
+        BA[BetterAuth]
+        RS[Resend Email]
+        ST[Stripe SDK]
+
+        TSS --> SF
+        SF --> BA
+        SF --> RS
+        SF --> ST
+    end
+
+    subgraph Electric["Electric SQL Service"]
+        direction TB
+        ES[Electric Sync Engine]
+        SS[Shape Streams]
+
+        ES --> SS
+    end
+
+    subgraph Database["PostgreSQL Database"]
+        direction TB
+        DB[(PostgreSQL)]
+
+        subgraph Tables["Tables"]
+            direction LR
+            T1[Products]
+            T2[Variants]
+            T3[Customers]
+            T4[Orders]
+            T5[Order Items]
+            T6[Reviews]
+            T7[Sessions]
+            T8[Users]
+        end
+
+        DB --> Tables
+    end
+
+    subgraph External["External Services"]
+        direction TB
+        STRIPE[Stripe API<br/>Payment Processing]
+        RESEND[Resend API<br/>Transactional Email]
+        CF[Cloudflare Images<br/>CDN & Storage]
+    end
+
+    %% Data Flow Connections
+    Client <-->|HTTP/HTTPS<br/>SSR & API| Server
+    Client <-->|WebSocket<br/>Real-time Sync| Electric
+
+    Electric <-->|PostgreSQL Protocol<br/>Logical Replication| Database
+    Server <-->|SQL Queries<br/>Transactions| Database
+
+    Server -->|Payment Intents<br/>Webhooks| STRIPE
+    Server -->|Send Emails<br/>Templates| RESEND
+    Server -->|Upload/Optimize<br/>Serve Images| CF
+
+    %% Styling
+    classDef clientClass fill:#e1f5ff,stroke:#0288d1,stroke-width:2px
+    classDef serverClass fill:#fff3e0,stroke:#ef6c00,stroke-width:2px
+    classDef electricClass fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px
+    classDef dbClass fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px
+    classDef externalClass fill:#fce4ec,stroke:#c2185b,stroke-width:2px
+
+    class Client,TSR,R19,RUI,TSDB,ELEC clientClass
+    class Server,TSS,SF,BA,RS,ST serverClass
+    class Electric,ES,SS electricClass
+    class Database,DB,Tables,T1,T2,T3,T4,T5,T6,T7,T8 dbClass
+    class External,STRIPE,RESEND,CF externalClass
