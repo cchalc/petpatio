@@ -39,7 +39,12 @@
       "Bash(node --check --input-type=module -e:*)",
       "Bash(node -e:*)",
       "Bash(timeout 10 pnpm run dev:*)",
-      "Bash(gtimeout:*)"
+      "Bash(gtimeout:*)",
+      "Bash(jj split:*)",
+      "Bash(pnpm check:*)",
+      "Bash(curl:*)",
+      "Bash(pnpm tsc:*)",
+      "Bash(pkill:*)"
     ]
   }
 }
