@@ -44,7 +44,10 @@
       "Bash(pnpm check:*)",
       "Bash(curl:*)",
       "Bash(pnpm tsc:*)",
-      "Bash(pkill:*)"
+      "Bash(pkill:*)",
+      "Bash(jj desc:*)",
+      "Bash(jj files:*)",
+      "Bash(jj prev:*)"
     ]
   }
 }
