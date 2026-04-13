@@ -47,7 +47,10 @@
       "Bash(pkill:*)",
       "Bash(jj desc:*)",
       "Bash(jj files:*)",
-      "Bash(jj prev:*)"
+      "Bash(jj prev:*)",
+      "Bash(npm run:*)",
+      "Bash(jj add:*)",
+      "Bash(jj commit:*)"
     ]
   }
 }
