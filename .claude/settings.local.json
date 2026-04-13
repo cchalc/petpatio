@@ -50,7 +50,8 @@
       "Bash(jj prev:*)",
       "Bash(npm run:*)",
       "Bash(jj add:*)",
-      "Bash(jj commit:*)"
+      "Bash(jj commit:*)",
+      "Bash(jj version:*)"
     ]
   }
 }

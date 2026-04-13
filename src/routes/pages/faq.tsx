@@ -1,5 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router'
-import { Container, Flex, Heading, Text, Box } from '@radix-ui/themes'
+import { Container, Flex, Heading, Text } from '@radix-ui/themes'
 import * as Accordion from '@radix-ui/react-accordion'
 import { ChevronDown } from 'lucide-react'
 

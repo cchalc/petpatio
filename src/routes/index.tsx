@@ -40,7 +40,10 @@ export const Route = createFileRoute('/')({
 })
 
 function HomePage() {
-  const { products, featuredProduct } = Route.useLoaderData()
+  const { products, featuredProduct } = Route.useLoaderData() as {
+    products: Awaited<ReturnType<typeof getProducts>>
+    featuredProduct: Awaited<ReturnType<typeof getProductByHandle>>
+  }
 
   return (
     <Flex direction="column">
