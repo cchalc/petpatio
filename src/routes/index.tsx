@@ -11,27 +11,37 @@ import { FAQPreview } from '../components/home/FAQPreview'
 import { NewsletterSignup } from '../components/home/NewsletterSignup'
 
 import { getProducts, getProductByHandle } from '../lib/shopify/queries'
+import { placeholderProducts, placeholderFeaturedProduct } from '../lib/placeholder-data'
+import type { ShopifyProduct } from '../lib/shopify/types'
 
 export const Route = createFileRoute('/')({
   loader: async () => {
-    // Fetch products with graceful fallback for unconfigured Shopify
-    let products: Awaited<ReturnType<typeof getProducts>> = []
-    let featuredProduct: Awaited<ReturnType<typeof getProductByHandle>> = null
+    // Fetch products with graceful fallback to placeholder data
+    let products: ShopifyProduct[] = []
+    let featuredProduct: ShopifyProduct | null = null
 
     try {
       const results = await Promise.allSettled([
         getProducts(8),
-        getProductByHandle('cocoturf'), // Adjust handle as needed
+        getProductByHandle('cocoturf'),
       ])
 
-      if (results[0].status === 'fulfilled') {
+      if (results[0].status === 'fulfilled' && results[0].value.length > 0) {
         products = results[0].value
       }
-      if (results[1].status === 'fulfilled') {
+      if (results[1].status === 'fulfilled' && results[1].value) {
         featuredProduct = results[1].value
       }
     } catch {
-      // Shopify not configured - continue with empty data
+      // Shopify not configured
+    }
+
+    // Fall back to placeholder data if Shopify returns nothing
+    if (products.length === 0) {
+      products = placeholderProducts
+    }
+    if (!featuredProduct) {
+      featuredProduct = placeholderFeaturedProduct
     }
 
     return { products, featuredProduct }
@@ -41,8 +51,8 @@ export const Route = createFileRoute('/')({
 
 function HomePage() {
   const { products, featuredProduct } = Route.useLoaderData() as {
-    products: Awaited<ReturnType<typeof getProducts>>
-    featuredProduct: Awaited<ReturnType<typeof getProductByHandle>>
+    products: ShopifyProduct[]
+    featuredProduct: ShopifyProduct | null
   }
 
   return (

@@ -4,11 +4,24 @@ import { Container, Flex, Grid, Heading, Text } from '@radix-ui/themes'
 
 import { ProductCard } from '../../components/product/ProductCard'
 import { getProducts } from '../../lib/shopify/queries'
+import { placeholderProducts } from '../../lib/placeholder-data'
 import type { ShopifyProduct } from '../../lib/shopify/types'
 
 export const Route = createFileRoute('/products/')({
   loader: async () => {
-    const products = await getProducts(50)
+    let products: ShopifyProduct[] = []
+
+    try {
+      products = await getProducts(50)
+    } catch {
+      // Shopify not configured
+    }
+
+    // Fall back to placeholder data
+    if (products.length === 0) {
+      products = placeholderProducts
+    }
+
     return { products }
   },
   component: ProductsPage,

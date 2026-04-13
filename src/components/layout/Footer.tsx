@@ -28,7 +28,7 @@ export function Footer() {
                 All Products
               </Text>
             </Link>
-            <Link to={'/products/cocoturf' as '/'} style={{ textDecoration: 'none' }}>
+            <Link to={'/products/$handle' as '/'} params={{ handle: 'cocoturf-small' } as never} style={{ textDecoration: 'none' }}>
               <Text size="2" style={{ color: 'var(--gray-6)', cursor: 'pointer' }}>
                 CocoTurf
               </Text>

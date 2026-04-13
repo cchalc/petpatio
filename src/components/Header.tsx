@@ -45,12 +45,12 @@ export function Header({ cartItemCount = 0, onCartClick, onMenuClick }: HeaderPr
                 Shop
               </Text>
             </Link>
-            <Link to={'/about' as '/'} style={{ textDecoration: 'none' }}>
+            <Link to={'/pages/about' as '/'} style={{ textDecoration: 'none' }}>
               <Text size="3" color="gray" style={{ cursor: 'pointer' }}>
                 About
               </Text>
             </Link>
-            <Link to="/faq" style={{ textDecoration: 'none' }}>
+            <Link to={'/pages/faq' as '/'} style={{ textDecoration: 'none' }}>
               <Text size="3" color="gray" style={{ cursor: 'pointer' }}>
                 FAQ
               </Text>

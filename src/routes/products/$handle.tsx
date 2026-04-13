@@ -8,11 +8,24 @@ import { AddToCart } from '../../components/product/AddToCart'
 import { ProductTabs } from '../../components/product/ProductTabs'
 
 import { getProductByHandle } from '../../lib/shopify/queries'
+import { placeholderProducts } from '../../lib/placeholder-data'
 import type { ShopifyProductVariant, ShopifyProduct } from '../../lib/shopify/types'
 
 export const Route = createFileRoute('/products/$handle')({
   loader: async ({ params }) => {
-    const product = await getProductByHandle(params.handle)
+    let product: ShopifyProduct | null = null
+
+    try {
+      product = await getProductByHandle(params.handle)
+    } catch {
+      // Shopify not configured
+    }
+
+    // Fall back to placeholder data
+    if (!product) {
+      product = placeholderProducts.find(p => p.handle === params.handle) || null
+    }
+
     if (!product) {
       throw notFound()
     }
