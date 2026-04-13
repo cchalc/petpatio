@@ -10,9 +10,11 @@ export function Footer() {
         <Grid columns={{ initial: '1', md: '4' }} gap="8">
           {/* Brand */}
           <Flex direction="column" gap="3">
-            <Text size="5" weight="bold" style={{ color: 'var(--gray-1)' }}>
-              PetPatio
-            </Text>
+            <img
+              src="/petpatio-logo-horizontal.webp"
+              alt="PetPatio"
+              style={{ height: 40, width: 'auto', filter: 'brightness(0) invert(1)' }}
+            />
             <Text size="2" style={{ color: 'var(--gray-6)' }}>
               Premium pet gear for the modern home.
             </Text>

@@ -32,9 +32,11 @@ export function Header({ cartItemCount = 0, onCartClick, onMenuClick }: HeaderPr
 
           {/* Logo */}
           <Link to="/" style={{ textDecoration: 'none' }}>
-            <Text size="6" weight="bold" style={{ color: 'var(--accent-9)' }}>
-              PetPatio
-            </Text>
+            <img
+              src="/petpatio-logo.svg"
+              alt="PetPatio"
+              style={{ height: 32 }}
+            />
           </Link>
 
           {/* Desktop Navigation */}
